@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
+    <title>PyBlog</title>
+</head>
+<body>
+    <h1 class="heading">PyBlog</h1>
+    <h3 class="heading-secondary">A private Python blog where you can post what you want.</h3>
+    
+
+    
+    {% if 'user' in session %}
+    <em><p style="text-align:center;font-size:0.9rem;margin-top:0;">Welcome, {{session['user']}}!</p></em>
+    {% endif %}
+
+    <div class="menu">
+    <a href="/">Home</a>  
+    {% if 'user' not in session %}
+        <a href="/login">Login</a>
+        <a href="/account">Create Account</a>
+    
+    {% else %}
+    <a href="/logout">Logout</a>
+    
+    {% endif %}
+    </div>
+
+ 
+
+
+
+   
+    
+   {% block content %}
+       
+   {% endblock content %}
+
+
+
+</body>
+</html>

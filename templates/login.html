@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="text-align:center;">Create Account</h2>
+<form action="/login" method="POST">
+
+    <label for="username">Username</label>
+    <br>
+    <input required name='username' id='username' type="text">
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input required type="password" name="password" id="password">
+    <br>
+    <button type="submit">Login</button>
+    {% if error %}
+    <div style="color:red;">Error: {{error}}</div>
+    {% endif %}
+
+</form>
+
+<script>
+</script>
+    
+{% endblock content %}

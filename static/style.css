@@ -1,0 +1,121 @@
+body{
+    background:rgb(43, 43, 43);
+    color:rgb(223, 223, 223);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+a{
+    color:rgb(86, 109, 214);
+}
+
+p{
+    font-weight:200;
+    color:rgb(177, 177, 177);
+}
+h1,h2,h3,h4,h5{
+    font-weight:900;
+}
+.post{
+    padding:0.5rem;
+    margin:auto;
+    margin-top:1rem;
+    margin-bottom:1rem;
+    border-radius:0.2rem;
+    background: rgba(0, 0, 0, 0.397);
+    min-width:250px;
+    width:50%;
+}
+.post p{
+    white-space: pre-wrap;
+}
+
+.post h5{
+    font-size:1.2rem;
+    margin:0;
+    margin-top:0.5rem;
+}
+.heading{
+    font-size:2.5rem;
+    margin:auto;
+    margin-bottom:0;
+    background:linear-gradient(rgb(12, 12, 12),rgb(20, 20, 20));
+    border-radius:2rem;
+    padding:1rem 2rem 1rem 2rem;
+    max-width:min-content;
+    margin-top:1rem;
+    
+    
+}
+.heading-secondary{
+    font-size:1.2rem;
+    font-weight: 200;
+    margin-top:0.5rem;
+    color:rgb(177, 177, 177);
+    text-align:center;
+}
+.menu{
+    width:max-content;
+    margin:auto;
+}
+.menu a{
+    margin-left:0.5rem;
+    margin-right:0.5rem;
+}
+.content{
+    width:100%;
+}
+.text-info{
+    background:rgb(223, 223, 223);
+    color:rgb(43, 43, 43);
+    padding:1rem;
+    width:max-content;
+    max-width:70%;
+    margin:auto;
+    margin-top:1rem;
+    box-shadow:3px 5px 8px black;
+    border-radius:5px;
+
+}
+button{
+    font-size:1rem;
+    padding:0.5rem 1rem 0.5rem 1rem;
+    background:rgb(21, 90, 21);
+    color:rgb(221, 221, 221);
+    border:none;
+    border-radius:0.2rem;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top:0.2rem;
+
+}
+button:hover{
+    opacity:0.7;
+}
+textarea{
+    font-family: inherit !important;
+    box-sizing: border-box;
+    padding:0.6rem;
+}
+form{
+    width:50%;
+    min-width:270px;
+    background:rgb(22, 22, 22);
+    padding:1rem;
+    margin:auto;
+    border-radius:0.3rem;
+}
+form input{
+    font-size:1rem;
+    padding:0.2rem;
+    padding-left:0.5rem;
+    width:100%;
+    box-sizing: border-box;
+
+}
+
+[contenteditable]:focus{
+    background:rgb(150, 150, 150);
+    color:rgb(65, 65, 65);
+}
+
+
+

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="text-align:center;">Create Account</h2>
+<form action="/account" method="POST">
+
+    <label for="username">Username (must be unique)</label>
+    <br>
+    <input required name='username' id='username' type="text">
+    <br>
+    <label for="email">Email</label>
+    <br>
+    <input required type="email" name="email" id="email">
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input required type="password" name="password" id="password">
+    <br><br>
+    <button type="submit">Make Account</button>
+    {% if error %}
+    <div style="color:red;">Error: {{error}}</div>
+    {% endif %}
+</form>
+
+
+<script>
+</script>
+    
+{% endblock content %}

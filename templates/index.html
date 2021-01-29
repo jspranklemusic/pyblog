@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+    {% block content %}
+    
+    {% if 'user' in session %}
+        <h4 class="text-info">Here are all of your most recent posts.</h4>
+        <form class="post" method="POST" action="/posts">
+            <input name="title" id="title" placeholder="Title" type="text">
+            <br>
+            <textarea placeholder="Content" style="width:100%;" name="content" id="content" cols="30" rows="4"></textarea>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        
+
+        {% for post in posts %}
+        <div class="post">
+            <h5>{{post['title']}}</h5>
+            <em style="color:grey;font-weight:200;font-size:0.8rem;">posted by {{ post['user'] }}</em>
+            <p id="{{'content'+post['id']|string}}" contenteditable="false">{{ post['content']}}</p>
+            <button class="editBtn" style="background-color:navy;" id="{{'edit'+post['id']|string}}" value="{{post['id']}}"  type="submit">Edit</button>
+            <button class="updateBtn" value="{{post['id']}}" id="{{'update'+post['id']|string}}" type="submit">Submit</button>
+            <button class="deleteBtn" value="{{post['id']}}" style="background-color:maroon;" type="submit">Delete</button>
+        </div>
+            
+
+        {% endfor %}
+    {% else %}
+        <h4 class="text-info">Please login to see your posts.</h4>
+    {% endif %}
+    
+    <script defer>
+
+        //deletes a post
+        document.querySelectorAll('.deleteBtn').forEach(btn=>{
+            btn.addEventListener('click', async (event)=>{
+                const response  = await fetch('/posts',{
+                    method:'DELETE',
+                    body:JSON.stringify({
+                        id:event.target.value
+                    }),
+                    headers:{
+                        'content-type':'application/json'
+                    }
+                })
+                if(response.ok){
+                    console.log(response)
+                    window.location.replace("/");
+                }
+
+            })
+        })
+
+        //makes a post editable
+        document.querySelectorAll('.editBtn').forEach(btn=>{
+            btn.addEventListener('click', (event)=>{
+                btn.style.display="none";
+                document.getElementById(`update${event.target.value}`).style.display="inline-block"
+                let post = document.getElementById(`content${event.target.value}`)
+                post.setAttribute('contenteditable','true')
+                post.focus()
+            })
+        })
+
+        //updates the post
+        document.querySelectorAll('.updateBtn').forEach(btn=>{
+            btn.style.display="none"
+            btn.addEventListener('click', async (event)=>{
+                let post = document.getElementById(`content${event.target.value}`)
+                if(post.textContent.length==0){
+                    post.focus()
+                    return
+                }
+                else{
+                    const response = await fetch('/posts',{
+                        method:'PUT',
+                        body:JSON.stringify({
+                            content:post.innerText,
+                            id:event.target.value
+                        }),
+                        headers:{
+                        'content-type':'application/json'
+                        }
+                    })
+                    if(response.ok){
+                        console.log(response)
+                        btn.style.display="none";
+                        document.getElementById(`edit${event.target.value}`).style.display="inline-block"
+                        post.setAttribute('contenteditable','false')
+                        post.blur()
+                        window.location.replace("/");
+                     }
+                    
+                }
+            })
+        })
+
+
+    </script>
+    {% endblock content %}
+
+   
+
+   
